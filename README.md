@@ -2,6 +2,12 @@
 # Laboratory Handbook
 
 ## Commands
+* Recovering Files from a Snapshot Using UNIX Command Line - [source](https://www.egr.msu.edu/decs/help-support/how-to/recovering_files_from_snapshot_using_unix_command_line)
+  1. Go to the directory where you want the recovered file located after you recover it. Within this, and all directories, is a hidden directory called ".snapshot".
+     This directory does not appear with "ls" using any options, but is accessible with "cd".
+  2. `cd .snapshot`
+  3. Type `ls` - You will see the hourly, nightly and weekly snapshot archives.
+     To see the timestamps associated with the creation of each of the snapshots, type `ls -lu`.
 * `vim`
    * To open a file in Vim: `vim filename`
    * Enter insert mode: Press `i` in normal mode to enter insert mode before the cursor.
@@ -26,6 +32,9 @@ When a package or library is designed for Ubuntu or has an Ubuntu version availa
 ```
 
 ## VCF | bcftools
+
+ ### Installation
+[How to install BCFTOOLS in any Linux Machine](https://www.youtube.com/watch?v=EJGz3yryrPo)
  ### Filter VCF files
 
 ```bash
@@ -69,7 +78,7 @@ When a package or library is designed for Ubuntu or has an Ubuntu version availa
     sudo apt-get install mysql
   ```
   ```bash
-    sapt-get install libmysqlclient-dev
+    sudo apt-get install libmysqlclient-dev
   ```
   ```bash
     sudo apt-get install libmariadbclient-dev
@@ -88,6 +97,9 @@ When a package or library is designed for Ubuntu or has an Ubuntu version availa
   export PERL5LIB=${PERL5LIB}:/specific/elkon/gonicohen/ensembl-vep/Bio/DB/HTS
   alias vep="/specific/elkon/gonicohen/ensembl-vep/vep"
   ```
+  *
+  -------------------- EXCEPTION --------------------
+  MSG: ERROR: Cache directory /root/.vep/homo_sapiens not found
 ### Running
 
 ```bash
