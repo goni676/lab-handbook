@@ -31,6 +31,23 @@ When a package or library is designed for Ubuntu or has an Ubuntu version availa
   apt-get -o APT::Sandbox::User=root install <package>
 ```
 
+## tmux
+
+[tmux shortcuts & cheatsheet](https://gist.github.com/MohamedAlaa/2961058)
+
+tmux is a terminal multiplexer an alternative to GNU Screen . In other words, it means that you can start a Tmux session and then open multiple windows inside that session. Each window occupies the entire screen and can be split into rectangular panes.
+
+### Installation
+```bash
+  gdocker up
+```
+```bash
+  apt-get -o APT::Sandbox::User=root update
+```
+```bash
+  apt-get -o APT::Sandbox::User=root install tmux
+```
+
 ## VCF | bcftools
 
  ### Installation
