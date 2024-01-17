@@ -97,9 +97,23 @@ When a package or library is designed for Ubuntu or has an Ubuntu version availa
   export PERL5LIB=${PERL5LIB}:/specific/elkon/gonicohen/ensembl-vep/Bio/DB/HTS
   alias vep="/specific/elkon/gonicohen/ensembl-vep/vep"
   ```
-  *
+* #### **Cache directory not found**
+  ```
   -------------------- EXCEPTION --------------------
   MSG: ERROR: Cache directory /root/.vep/homo_sapiens not found
+  ```
+  The error message signifies that the Homo sapiens cache directory is absent in the given location (/root/.vep/homo_sapiens). This issue may stem from two possible causes
+  1. a simpler scenario, the "homo_sapiens" directory is not present in the designated location by default. In such cases, the solution is to include the `--dir_cache [directory]` flag while running the command. For     instance:
+     
+  ```bash
+   vep --cache --dir_cache /specific/elkon/sapir2 -i BRCA_WGS_cohort.vcf -o try1.txt
+  ```
+  2. Alternatively, the cache might be missing, requiring a separate download with the following commands:
+     ```bash
+     curl -O https://ftp.ensembl.org/pub/release-111/variation/vep/homo_sapiens_vep_111_GRCh38.tar.gz
+     tar xzf homo_sapiens_vep_111_GRCh38.tar.gz
+     ```
+     It's important to note that if the library download destination differs from the default specified by VEP, it needs to be updated during execution using the `--dir_cache` flag.
 ### Running
 
 ```bash
