@@ -55,11 +55,7 @@ tmux is a terminal multiplexer an alternative to GNU Screen . In other words, it
  ### Filter VCF files
 
 ```bash
-  specific/elkon/gonicohen/bcftools-1.14/bcftools 
-  view -S ^/specific/elkon/gonicohen/newfile.txt 
-  /specific/elkon/gonicohen/SHEBA/SHEBA_Freeze_One.NF.vcf.gz > 
-  /specific/elkon/gonicohen/SHEBA/filtered.vcf
-
+/specific/elkon/gonicohen/bcftools-1.14/bcftools view -S ^/specific/elkon/gonicohen/185delAG_carriers_CH17.txt /specific/elkon/gonicohen/SHEBA/SHEBA_Freeze_Seven.17.NF.vcf.gz > /specific/elkon/gonicohen/SHEBA/filtered_185delAG.vcf --force-samples
 ```
 * **view**: This is the subcommand of bcftools used to view, filter, or transform VCF/BCF files.
 * **-S ^/specific/elkon/gonicohen/newfile.txt**: This option specifies a file (newfile.txt) containing a list of sample names to be excluded (^ is used as a negation). The samples listed in newfile.txt will not be included in the output.
