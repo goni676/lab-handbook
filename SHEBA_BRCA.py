@@ -1,38 +1,50 @@
 import pandas as pd
-main_file = 'IDs_185delAG_FREEZE.xlsx'
-df = pd.read_excel(main_file)
 
-# Samples not carrying mutations to be excluded from the VCF.
-selected_columns = [col for col in df.columns if "0/0" in str(df.at[0, col])]
-with open('ex_185delAG_CH17', 'w') as output_file:
-    for element in selected_columns:
-        output_file.write(element + '\n')
+def BRCA_sheba(gen_file_name, phen_file, mutation, source_file, output_file_name, gene):
+    main_file = gen_file_name
+    df = pd.read_excel(main_file)
+    output_name = f"exc_{mutation}"
 
-CH_17_var = [col for col in df.columns if "0/1" in str(df.at[0, col])]
+    # Samples not carrying mutations to be excluded from the VCF.
+    selected_columns = [col for col in df.columns if "0/0" in str(df.at[0, col])]
+    with open(output_name, 'w') as output_file:
+        for element in selected_columns:
+            output_file.write(element + '\n')
 
-main_file = 'BRCA.xlsx'
-df = pd.read_excel(main_file)
-df['Unnamed: 0'] = df['Unnamed: 0'].astype(str)
+    CH_17_var = [col for col in df.columns if "0/1" in str(df.at[0, col])]
 
-# Retrieve the women ID from the column names in the format 'SHEBA_10114262_21-08773'
-list_ID_CH_17 = [element.split('_')[1] for element in CH_17_var]
+    main_file = phen_file
+    df = pd.read_excel(main_file)
+    df['Unnamed: 0'] = df['Unnamed: 0'].astype(str)
+
+    # Retrieve the women ID from the column names in the format 'SHEBA_10114262_21-08773'
+    list_ID_CH_17 = [element.split('_')[1] for element in CH_17_var]
+
+    with open(output_file_name, 'a') as output_file:  # 'a' for append mode
+        output_file.write(f"======================{gene}_{mutation}======================" + '\n' + '\n')
+        output_file.write(f"#women having the {mutation} mutation in the {source_file}:" + str(len(CH_17_var)) + '\n')
+        output_file.write(f"IDs of women with the {mutation} mutation in the {source_file}:" + '\n')
+        output_file.write(str(list_ID_CH_17) + '\n')
+
+        # Compare to the phenotypes file
+        df_1 = df[df['mutation'].str.contains(mutation, case=False, na=False)]
+        list_ID = list(df_1['Unnamed: 0'])
+
+        output_file.write("********" + '\n')
+        output_file.write(f"#Women having the {mutation} mutation in the phenotype file:" + str(len(list_ID)) + '\n')
+        output_file.write(f"IDs of women with the {mutation} mutation in the phenotype file:" + '\n')
+        output_file.write(str(list_ID) + '\n')
+        output_file.write("********" + '\n')
+
+        list_filter = [element for element in list_ID_CH_17 if element not in list_ID]
+
+        output_file.write(f"#women with the {mutation} mutation in {source_file} not present in the phenotype file:" +
+                          str(len(list_filter)) + '\n')
+        output_file.write(f"IDs of women with the {mutation} mutation in {source_file} not present in the phenotype file:" + '\n')
+        output_file.write(str(list_filter) + '\n'+ '\n')
 
 
-print("#women having the 185delAG mutation in the 'SHEBA_Freeze_Seven.17.NF.vcf.gz' file:", len(CH_17_var))
-print("IDs of women with the 185delAG mutation in the 'SHEBA_Freeze_Seven.17.NF.vcf.gz' file:")
-print(list_ID_CH_17)
 
-# Compare to the phenotypes file
-df_185delAG = df[df['mutation'].str.contains('185delAG', case=False, na=False)]
-list_ID_185delAG = list(df_185delAG['Unnamed: 0'])
-print("********")
-print("#Women having the 185delAG mutation in the phenotype file:", len(list_ID_185delAG))
-print("IDs of women with the 185delAG mutation in the phenotype file:")
-print(list_ID_185delAG)
-print("********")
-
-list_filter = [element for element in list_ID_CH_17 if element not in list_ID_185delAG]
-
-print("#women with the 185delAG mutation in 'SHEBA_Freeze_Seven.17.NF.vcf.gz' not present in the phenotype file:", len(list_filter))
-print("IDs of women with the 185delAG mutation in 'SHEBA_Freeze_Seven.17.NF.vcf.gz' not present in the phenotype file:")
-print(list_filter)
+BRCA_sheba('IDs_185delAG_FREEZE.xlsx', 'BRCA.xlsx', '185delAG', 'SHEBA_Freeze_Seven.17.NF.vcf.gz', 'summary.txt', 'BRCA1')
+BRCA_sheba('IDs_5382insC_FREEZE.xlsx', 'BRCA.xlsx', '382insC', 'SHEBA_Freeze_Seven.17.NF.vcf.gz', 'summary.txt', 'BRCA1')
+# BRCA_sheba('IDs_6174delT_FREEZE.xlsx', 'BRCA.xlsx', '6174delT', 'SHEBA_Freeze_Seven.13.NF.vcf.gz', 'summary.txt', 'BRCA2')
