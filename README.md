@@ -58,7 +58,7 @@ tmux is a terminal multiplexer an alternative to GNU Screen . In other words, it
 /specific/elkon/gonicohen/bcftools-1.14/bcftools view -S ^/specific/elkon/gonicohen/185delAG_carriers_CH17.txt /specific/elkon/gonicohen/SHEBA/SHEBA_Freeze_Seven.17.NF.vcf.gz > /specific/elkon/gonicohen/SHEBA/filtered_185delAG.vcf --force-samples
 ```
 * **view**: This is the subcommand of bcftools used to view, filter, or transform VCF/BCF files.
-* **-S ^/specific/elkon/gonicohen/newfile.txt**: This option specifies a file (newfile.txt) containing a list of sample names to be excluded (^ is used as a negation). The samples listed in newfile.txt will not be included in the output.
+* **-S ^/specific/elkon/gonicohen/newfile.txt**: This option specifies a file (newfile.txt) containing a list of sample names to be **excluded** (^ is used as a negation). The samples listed in newfile.txt will not be included in the output. *To determine which samples should be **included** in the filtered VEP using a text file, we can use the `view -S ` syntax (without negation `^`).
 * **/specific/elkon/gonicohen/SHEBA/SHEBA_Freeze_One.NF.vcf.gz**: This is the input VCF file in compressed format (vcf.gz).
 * **> /specific/elkon/gonicohen/SHEBA/filtered.vcf**: This part redirects the filtered output to a new file (filtered.vcf) in the specified directory.
 
