@@ -1,5 +1,5 @@
 import pandas as pd
-main_file = 'check.xlsx'
+main_file = 'IDs_185delAG_FREEZE.xlsx'
 df = pd.read_excel(main_file)
 
 # Samples not carrying mutations to be excluded from the VCF.
