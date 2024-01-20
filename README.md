@@ -128,7 +128,7 @@ tmux is a terminal multiplexer an alternative to GNU Screen . In other words, it
       wget https://ftp.ensembl.org/pub/release-111/variation/vep/homo_sapiens_vep_111_GRCh38.tar.gz
       ```
       ```
-      tar xzf homo_sapiens_vep_111_GRCh38.tar.gz
+      tar -xzvf homo_sapiens_vep_111_GRCh38.tar.gz
       ```
      * Note that if the library download destination differs from the default specified by VEP (/root/.vep/homo_sapiens), it needs to be updated during execution using the `--dir_cache` flag.
      * Note that the cache downloading process is resource-intensive and time-consuming. If you're not using tmux, consider initiating `screen` before executing `gdocker up`. Then, proceed to download the cache by running the command:
