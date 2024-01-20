@@ -6,7 +6,7 @@ We are searching for three mutations within BRCA1 and BRCA2:
 |-------|-------|----------|----------|
 | 17    | BRCA1 | 185delAG | 43124027 |
 | 17    | BRCA1 | 5382insC | 43057062 |
-| 13    | BRCA2 | 6174delT | 32340527 |
+| 13    | BRCA2 | 6174delT | 32340300 |
 
 
 ## Genotypes
