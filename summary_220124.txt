@@ -1,0 +1,110 @@
+
+# Comprehensive Analysis of BRCA1/2 Mutations in SHEBA_Freeze_Seven Genomic Data
+
+| CHROM | GENE  | MUTATION | POS      | Genomic data file
+|-------|-------|----------|----------|------------------------
+| 17    | BRCA1 | 185delAG | 43124027 | SHEBA_Freeze_Seven.17.NF.vcf.gz
+| 17    | BRCA1 | 5382insC | 43057062 | SHEBA_Freeze_Seven.17.NF.vcf.gz
+| 13    | BRCA2 | 6174delT | 32340300 | SHEBA_Freeze_Seven.13.NF.vcf.gz
+
+======================BRCA1_185delAG======================
+
+- Women with the 185delAG mutation in SHEBA_Freeze_Seven.17.NF.vcf.gz: 361
+- Women with the 185delAG mutation in the phenotype file: 395
+- Phenotype-genotype intersection for BRCA1_185delAG: 349
+
+- Women with the 185delAG mutation from SHEBA_Freeze_Seven.17.NF.vcf.gz not in the phenotype file: 5
+  - IDs: {'34699363', '38274528', '308381482', '321916710', '20470047'}
+- Women with the 185delAG mutation from SHEBA_Freeze_Seven.17.NF.vcf.gz not identified as mutation carriers in the phenotype file: 7
+
+
+    | ID        | Gene  | Mutation  |
+    |-----------|-------|-----------|
+    | 27349885  | BRCA2 | 6174delT  |
+    | 300325800 | BRCA1 | 5382insC  |
+    | 25591819  | BRCA1 | 5382insC  |
+    | 315325837 | BRCA1 | 188delAG  |
+    | 16822942  | BRCA1 | 185delT   |
+    | 6508071   | BRCA2 | 6174delT  |
+    | 37680444  | BRCA2 | 6174delT  |
+
+- Women with the 185delAG mutation in the phenotype file not in SHEBA_Freeze_Seven.17.NF.vcf.gz: 37
+  - IDs: {'24337404', '37635877', '304514466', '59244822', '54127717', '34398560', '15831175', '305640302', '24879736', '2145696', '305051328', '33968579', '3020716', '17203134', '33211699', '52409752', '34495424', '26496869', '301616124', '25398249', '301273645', '38134599', '30794961', '61246294', '52758208', '308465095', '77338630', '37581030', '204700470', '37309408', '31919210', '54959465', '51196251', '68647551', '34440537', '302281647', '64886369'}
+- Women with the 185delAG mutation in the phenotype file not identified as carriers in SHEBA_Freeze_Seven.17.NF.vcf.gz: 9
+
+    | Index | ID        | Genotype                  |
+    |-------|-----------|---------------------------|
+    | 12    | 1217504   | 0/0:33:33,0:.:67:.:.:..   |
+    | 500   | 23605801  | 0/0:35:35,0:.:69:.:.:..   |
+    | 896   | 308339340 | 0/0:40:40,0:.:76:.:.:..   |
+    | 1150  | 32953622  | 0/0:23:23,0:.:51:.:.:..   |
+    | 1313  | 34208553  | 0/0:42:42,0:.:78:.:.:..   |
+    | 1389  | 35694918  | 0/0:27:27,0:.:58:.:.:..   |
+    | 1397  | 35854181  | 0/0:39:39,0:.:75:.:.:..   |
+    | 1416  | 36234359  | 0/0:36:36,0:.:71:.:.:..   |
+    | 1662  | 46112215  | 0/0:28:28,0:.:59:.:.:..   |
+
+
+======================BRCA1_5382insC======================
+
+- Women with the 5382insC mutation in SHEBA_Freeze_Seven.17.NF.vcf.gz: 94
+- Women with the 5382insC mutation in the phenotype file: 97
+- Phenotype-genotype intersection for BRCA1_5382insC: 87
+
+- Women with the 5382insC mutation from SHEBA_Freeze_Seven.17.NF.vcf.gz not in the phenotype file: 1
+  - ID: {'54376533'}
+- Women with the 5382insC mutation from SHEBA_Freeze_Seven.17.NF.vcf.gz not identified as mutation carriers in the phenotype file: 6
+
+    |   ID       |    Gene  |      Mutation      |
+    |------------|----------|--------------------|
+    | 23529027   |  BRCA1   |                    |
+    | 32953622   | BRCA1+2  | 6174delT+185delAG  |
+    | 308339340  |  BRCA1   |      185delAG      |
+    | 34208553   |  BRCA1   |      185delAG      |
+    | 35854181   |  BRCA1   |      185delAG      |
+    | 46112215   |  BRCA1   |      185delAG      |
+
+- Women with the 5382insC mutation in the phenotype file not in SHEBA_Freeze_Seven.17.NF.vcf.gz: 7
+  - IDs: {'40260747', '24205320', '50716745', '54376553', '29660800', '66615238', '307859934'}
+- Women with the 5382insC mutation in the phenotype file not identified as carriers in SHEBA_Freeze_Seven.17.NF.vcf.gz: 3
+
+    | Index |   ID      |       Genotype          |
+    |-------|-----------|-------------------------|
+    |  572  | 25188269  | 0/0:24:24,0:.:53:.:.:.. |
+    |  592  | 25591819  | 0/0:19:19,0:.:44:.:.:.. |
+    |  738  | 300325800 | 0/0:24:24,0:.:53:.:.:.. |
+
+
+======================BRCA2_6174delT======================
+
+- Women with the 6174delT mutation in SHEBA_Freeze_Seven.13.NF.vcf.gz: 344
+- Women with the 6174delT mutation in the phenotype file: 389
+- Phenotype-genotype intersection for BRCA2_6174delT: 333
+
+- Women with the 6174delT mutation from SHEBA_Freeze_Seven.13.NF.vcf.gz not in the phenotype file: 8
+  - IDs: {'215887134', '322693045', '59855379', '207375320', '24923658', '17920760', 'ESRD-CH-251-21', '204246961'}
+- Women with the 6174delT mutation from SHEBA_Freeze_Seven.13.NF.vcf.gz not identified as mutation carriers in the phenotype file: 3
+
+    |    ID      |   Gene   |   Mutation  |
+    |------------|----------|-------------|
+    | 301267068  |  BRCA2   |  c.5946del  |
+    | 40684599   |  BRCA2   |  c.5946del  |
+    | 35694918   |  BRCA1   |  185delAG   |
+
+
+- Women with the 6174delT mutation in the phenotype file not in SHEBA_Freeze_Seven.13.NF.vcf.gz: 48
+  - IDs: {'305682981', '27844182', '51557601', '8160566', '4614814', '300031515', '40517856', '69065639', '34194217', '1467521', '306908716', '313372393', '38159018', '36543643', '34293894', '24202160', '7416787', '201529047', '68444207', '53884763', '48077846', '313371452', '53387171', '8367195', '35673292', '307773598', '27380914', '53077988', '315790691', '34536300', '32384638', '50499599', '27470780', '12530150', '306987918', '37168499', '55520902', '43580612', '32624363', '32912578', '33647041', '56125263', '66118845', '1792076', '54541719', '11215902', '25753260', '55713101'}
+- Women with the 6174delT mutation in the phenotype file not identified as carriers in SHEBA_Freeze_Seven.13.NF.vcf.gz: 8
+
+    | Index |      ID      |         Genotype         |
+    |-------|--------------|--------------------------|
+    |  500  |   23605801   | 0/0:63:63,0:.:101:.:.:.. |
+    |  850  |  305691586   | 0/0:64:64,0:.:102:.:.:.. |
+    |  997  |   31559164   | 0/0:86:86,0:.:120:.:.:.. |
+    | 1317  |   34237099   | 0/0:53:53,0:.:91:.:.:..  |
+    | 1478  |   37680444   | 0/0:77:77,0:.:113:.:.:.. |
+    | 1491  |   38184594   | 0/0:86:86,0:.:120:.:.:.. |
+    | 1938  |   56777824   | 0/0:61:61,0:.:99:.:.:..  |
+    | 2076  |   6508071    | 0/0:81:81,0:.:116:.:.:.. |
+
+
