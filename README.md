@@ -139,10 +139,6 @@ tmux is a terminal multiplexer an alternative to GNU Screen . In other words, it
 ### Running
 
 ```bash
-/specific/elkon/sapir2/Lina_project/chr19/chr19_to_vep.vcf -o 
-/specific/elkon/sapir2/Lina_project/chr19/chr19_after_vep.vcf --cache --dir_cache 
-/specific/elkon/sapir2/ensembl-vep2 --fields "Allele,Consequence,IMPACT,SYMBOL,
-Gene,Feature_type,Feature,BIOTYPE,EXON,INTRON,Protein_position,Amino_acids,
-Codons,Existing_variation,DISTANCE,STRAND,FLAGS" &
+vep --vcf -i /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/filtered_185delAG_280124.vcf -o /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/185delAG_after_VEP_2901.vcf --cache --dir_cache /specific/elkon/gonicohen --fields "Allele,Consequence,IMPACT,SYMBOL,Gene,Feature_type,Feature,BIOTYPE,EXON,INTRON,Protein_position,Amino_acids,Codons,Existing_variation,DISTANCE,STRAND,FLAGS" &
 ```
 
