@@ -17,6 +17,8 @@
       * `:q` - Quit (close).
       * `:wq or :x` - Save and quit.
       * `:q!` - Quit without saving changes (force quit).
+* `ps aux | grep 'gonicohen'`
+  
 
 ## Server installation
 When a package or library is designed for Ubuntu or has an Ubuntu version available, we employ the following commands. Instead of <package>, we specify the actual package name.
