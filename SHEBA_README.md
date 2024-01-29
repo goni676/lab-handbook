@@ -36,4 +36,13 @@ It will be accomplished through a two-step process: first, writing the VCF's hea
   ```
   gunzip -c SHEBA_Freeze_Seven.17.NF.vcf.gz | grep -e 43124027 >> ID_Var_Gen.txt
   ```
-
+## Mutation Carriers Selection: Filtering Genotyping Data
+After generating a file containing the IDs to be removed ('exc_185delAG.txt'), specifically those where the genotyping begins with "0/0" concerning the desired mutation, we use bcftools to apply a filter to the genotyping file. This process retains only those individuals who carry the mutation.
+```
+/specific/elkon/gonicohen/bcftools-1.14/bcftools view -S ^/specific/elkon/gonicohen/exc_185delAG.txt /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/SHEBA_Freeze_Seven.17.NF.vcf.gz > /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/filtered_185delAG.vcf --force-samples
+```
+## VEP
+Next, we aim to execute VEP on the refined VCF dataset, employing the following command:
+```
+vep --vcf -i /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/filtered_185delAG_280124.vcf -o /specific/elkon/gonicohen/SHEBA/FREEZE_1-9/185delAG_after_VEP_2901.vcf --cache --dir_cache /specific/elkon/gonicohen --fields "Allele,Consequence,IMPACT,SYMBOL,Gene,Feature_type,Feature,BIOTYPE,EXON,INTRON,Protein_position,Amino_acids,Codons,Existing_variation,DISTANCE,STRAND,FLAGS" &
+```
