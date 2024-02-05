@@ -67,6 +67,17 @@ CADD (Combined Annotation Dependent Depletion) is a tool and a scoring system de
 | 1      | 10003 | A   | G   | 0.744152  | 8.859  |
 
 For successful execution, ensure that the input file is a text file sorted first by position and then by chromosome. Additionally, filter the variants to include only those that transition one base pair at a time, following the format illustrated above.
+
+Python code to perform filtering:
+```
+df = df.drop(columns='Var_ID')
+df_filtered = df[(df['Ref'].str.len() == 1) & (df['Alternative_Allele'].str.len() == 1)]
+df_filtered['Pos'] = df_filtered['Pos'].astype(int)
+df_filtered['Chrom'] = df_filtered['Chrom'].astype(int)
+df_sorted = df_filtered.sort_values(by=['Chrom', 'Pos'])
+```
+
+Command entered on the server's command line:
 ```
 awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8; next} key in val {print $0.val[key]}' final_to_CADD.txt /specific/elkon/sapir2/clinvar_data/whole_genome_SNVs.tsv after_CADD.txt
 ```
