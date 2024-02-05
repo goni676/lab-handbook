@@ -55,17 +55,19 @@ cat 185delAG_after_VEP.vcf | grep -w -e AKT1 -e ALKBH2 -e ALKBH3 -e ANKRD28 -e A
 ## CADD
 CADD (Combined Annotation Dependent Depletion) is a tool and a scoring system designed to evaluate the deleteriousness of genetic variants in the human genome. 
 
-The CADD file follows the specified format:
-#Chrom	Pos	Ref	Alt	RawScore	PHRED
-1	10001	T	A	0.702541	8.478
-1	10001	T	C	0.750954	8.921
-1	10001	T	G	0.719549	8.634
-1	10002	A	C	0.713993	8.583
-1	10002	A	G	0.743661	8.854
-1	10002	A	T	0.700507	8.460
-1	10003	A	C	0.714485	8.588
-1	10003	A	G	0.744152	8.859
+| #Chrom | Pos   | Ref | Alt | RawScore  | PHRED  |
+|--------|-------|-----|-----|-----------|--------|
+| 1      | 10001 | T   | A   | 0.702541  | 8.478  |
+| 1      | 10001 | T   | C   | 0.750954  | 8.921  |
+| 1      | 10001 | T   | G   | 0.719549  | 8.634  |
+| 1      | 10002 | A   | C   | 0.713993  | 8.583  |
+| 1      | 10002 | A   | G   | 0.743661  | 8.854  |
+| 1      | 10002 | A   | T   | 0.700507  | 8.460  |
+| 1      | 10003 | A   | C   | 0.714485  | 8.588  |
+| 1      | 10003 | A   | G   | 0.744152  | 8.859  |
 
-For successful execution, ensure that the input file is a text file sorted first by position and then by chromosome. Additionally, filter the variants to include only those that transition one base pair at a time, following the format illustrated below:
-
+For successful execution, ensure that the input file is a text file sorted first by position and then by chromosome. Additionally, filter the variants to include only those that transition one base pair at a time, following the format illustrated above.
+```
+awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8; next} key in val {print $0.val[key]}' final_to_CADD.txt /specific/elkon/sapir2/clinvar_data/whole_genome_SNVs.tsv after_CADD.txt
+```
 
