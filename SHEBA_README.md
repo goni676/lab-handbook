@@ -54,6 +54,7 @@ cat 185delAG_after_VEP.vcf | grep -w -e AKT1 -e ALKBH2 -e ALKBH3 -e ANKRD28 -e A
 
 ## CADD
 CADD (Combined Annotation Dependent Depletion) is a tool and a scoring system designed to evaluate the deleteriousness of genetic variants in the human genome. 
+CADD corresponds to the assembly of the Human Genome version 38.
 
 | #Chrom | Pos   | Ref | Alt | RawScore  | PHRED  |
 |--------|-------|-----|-----|-----------|--------|
@@ -82,3 +83,30 @@ Command entered on the server's command line:
 awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8; next} key in val {print $0.val[key]}' final_to_CADD.txt /specific/elkon/sapir2/clinvar_data/whole_genome_SNVs.tsv after_CADD.txt
 ```
 
+## AlphaMissense
+A deep learning model that builds on the protein structure prediction tool AlphaFold2 (see the Perspective by Marsh and Teichmann). The model is trained on population frequency data and uses sequence and predicted structural context, all of which contribute to its performance. AlphaMissense corresponds to the assembly of the Human Genome version 38.
+
+The format of the AlphaMissense file is as follows:
+
+| #CHROM | POS   | REF | ALT | Genome | UniProt_ID | Transcript_ID         | Protein_Variant | Am_Pathogenicity | Am_Class        |
+|--------|-------|-----|-----|--------|------------|------------------------|------------------|-------------------|-----------------|
+| chr1   | 69094 | G   | T   | hg38   | Q8NH21     | ENST00000335137.4     | V2L              | 0.2937            | likely_benign   |
+| chr1   | 69094 | G   | C   | hg38   | Q8NH21     | ENST00000335137.4     | V2L              | 0.2937            | likely_benign   |
+| chr1   | 69094 | G   | A   | hg38   | Q8NH21     | ENST00000335137.4     | V2M              | 0.3296            | likely_benign   |
+| chr1   | 69095 | T   | C   | hg38   | Q8NH21     | ENST00000335137.4     | V2A              | 0.2609            | likely_benign   |
+| chr1   | 69095 | T   | A   | hg38   | Q8NH21     | ENST00000335137.4     | V2E              | 0.2922            | likely_benign   |
+ 
+Python code for filtering to meet the requirements of AlphaMissense file preparation:
+```
+df = df.drop(columns='Var_ID')
+df_filtered = df[(df['Ref'].str.len() == 1) & (df['Alternative_Allele'].str.len() == 1)]
+df_filtered['Pos'] = df_filtered['Pos'].astype(int)
+df_filtered['Chrom'] = 'chr' + df_filtered['Chrom'].astype(str)
+df_sorted = df_filtered.sort_values(by=['Chrom', 'Pos'])
+df_sorted.to_csv('final_to_ALPHA.txt', sep='\t', index=False)
+```
+
+Command entered on the server's command line:
+```
+awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8” “$9” “$10” “$11” “$12” “$13; next} key in val {print $0.val[key]}' final_to_ALPHA.txt /specific/elkon/sapir2/Lina_project/AlphaMissense_hg38.tsv
+```
