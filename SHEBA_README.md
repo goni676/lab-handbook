@@ -80,7 +80,7 @@ df_sorted = df_filtered.sort_values(by=['Chrom', 'Pos'])
 
 Command entered on the server's command line:
 ```
-awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8; next} key in val {print $0.val[key]}' final_to_CADD.txt /specific/elkon/sapir2/clinvar_data/whole_genome_SNVs.tsv after_CADD.txt
+awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8; next} key in val {print $0.val[key]}' final_to_CADD.txt /specific/elkon/sapir2/clinvar_data/whole_genome_SNVs.tsv > after_CADD.txt
 ```
 
 ## AlphaMissense
@@ -108,5 +108,5 @@ df_sorted.to_csv('final_to_ALPHA.txt', sep='\t', index=False)
 
 Command entered on the server's command line:
 ```
-awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8" "$9" "$10" "$11" "$12" "$13; next} key in val {print $0.val[key]}' final_to_ALPHA.txt /specific/elkon/sapir2/Lina_project/AlphaMissense_hg38.tsv after_ALPHA.txt
+awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8" "$9" "$10" "$11" "$12" "$13; next} key in val {print $0.val[key]}' final_to_ALPHA.txt /specific/elkon/sapir2/Lina_project/AlphaMissense_hg38.tsv > after_ALPHA.txt
 ```
