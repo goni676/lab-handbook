@@ -110,3 +110,42 @@ Command entered on the server's command line:
 ```
 awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8" "$9" "$10" "$11" "$12" "$13; next} key in val {print $0.val[key]}' final_to_ALPHA.txt /specific/elkon/sapir2/Lina_project/AlphaMissense_hg38.tsv > after_ALPHA.txt
 ```
+
+## vcfanno
+vcfanno allows you to quickly annotate your VCF with any number of INFO fields from any number of VCFs or BED files. It uses a simple conf file to allow the user to specify the source annotation files and fields and how they will be added to the info of the query VCF. In the Sheba dataset, we utilized vcfanno to ascertain the Minor Allele Frequency (MAF), representing the frequency of the variant within the population.
+
+We achieved this by linking vcfanno to the GNOMAD dataset and specifying the necessary field as 'AF RAW' in the configuration.
+
+### Prepare Data for Vcfanno Processing
+* Sort the data frame based on chromosome and position.
+  ```
+  df.sort_values(by=['Chrom', 'Pos'], ascending=[True, True])
+  ```
+* Add a new column named "ID" immediately after the 'Pos' column, filling all rows with dots.
+  ```
+  df.insert(2, 'ID', '.')
+  ```
+* Split the DataFrame into 22 separate files based on the 'chrom' column.
+* We must provide a VCF file as input, which can be accomplished by appending a header to a text file:
+  ```
+  header_lines = "##fileformat=VCFv4.3\n##reference=GRCh38\n#CHROM\tPOS\tID\tREF\tALT\tConsequence_Type\tImpact\tGene\tGene_ID\tTranscript_Info\tTranscript_Type\tAmino_Acid_Position\tPolyphen_Score\tAmino_Acid_Change\tNucleotide_Change\tStrand_Info\tcarriers ID\n"
+  ```
+  
+```
+output_directory = 'output_vcf'
+os.makedirs(output_directory, exist_ok=True)
+
+# Loop through each group (DataFrame) and save it to a VCF file
+header_lines = "##fileformat=VCFv4.3\n##reference=GRCh38\n#CHROM\tPOS\tID\tREF\tALT\tConsequence_Type\tImpact\tGene\tGene_ID\tTranscript_Info\tTranscript_Type\tAmino_Acid_Position\tPolyphen_Score\tAmino_Acid_Change\tNucleotide_Change\tStrand_Info\tcarriers ID\n"
+
+# Loop through each group (DataFrame) and save it to a CSV file
+for chrom, group_df in grouped_df:
+    output_file = os.path.join(output_directory, f'df_chrom_{chrom}.vcf')
+
+    # Save the DataFrame along with the header lines
+    with open(output_file, 'w') as f:
+        f.write(header_lines)
+        group_df.to_csv(f, index=False, header=False, sep='\t', line_terminator='\n', mode='a')
+```
+![Alt Text](https://drive.google.com/uc?export=download&id=1_zNSd4jx7X-x3IRJ6u53nM-u07ImoJh4)
+
