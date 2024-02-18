@@ -147,5 +147,15 @@ for chrom, group_df in grouped_df:
         f.write(header_lines)
         group_df.to_csv(f, index=False, header=False, sep='\t', line_terminator='\n', mode='a')
 ```
-![Alt Text](https://drive.google.com/uc?export=download&id=1_zNSd4jx7X-x3IRJ6u53nM-u07ImoJh4)
-
+* To utilize vcfanno with Gnomad, you must download the Gnomad files, available at [this link](https://gnomad.broadinstitute.org/downloads).
+* Modify the configuration file to correspond to the specific VCF file for the desired chromosome.
+```
+  [[annotation]]
+file="/specific/elkon/sapir2/gnomad_data/gnomad.genomes.v3.1.2.sites.chr6.vcf.bgz"
+#file="/specific/elkon/sapir2/tools/vcfanno-0.3.5/example/exac.vcf.gz"
+# the special name 'ID' pulls out the rs id from the VCF
+#fields = ["AF_raw", "vep"]
+#ops=["first" , "first"]
+fields = ["AF_raw"]
+ops=["first"]
+```
