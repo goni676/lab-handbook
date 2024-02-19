@@ -112,7 +112,7 @@ awk '{key=$1 FS $2 FS $3 FS $4} NR==FNR {val[key]=$5" "$6" "$7" "$8" "$9" "$10" 
 ```
 
 ## vcfanno
-vcfanno allows you to quickly annotate your VCF with any number of INFO fields from any number of VCFs or BED files. It uses a simple conf file to allow the user to specify the source annotation files and fields and how they will be added to the info of the query VCF. In the Sheba dataset, we utilized vcfanno to ascertain the Minor Allele Frequency (MAF), representing the frequency of the variant within the population.
+[vcfanno](https://github.com/brentp/vcfanno/blob/master/README.md) allows you to quickly annotate your VCF with any number of INFO fields from any number of VCFs or BED files. It uses a simple conf file to allow the user to specify the source annotation files and fields and how they will be added to the info of the query VCF. In the Sheba dataset, we utilized vcfanno to ascertain the Minor Allele Frequency (MAF), representing the frequency of the variant within the population.
 
 We achieved this by linking vcfanno to the GNOMAD dataset and specifying the necessary field as 'AF RAW' in the configuration.
 
