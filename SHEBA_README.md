@@ -125,7 +125,7 @@ We achieved this by linking vcfanno to the GNOMAD dataset and specifying the nec
   ```
   df.insert(2, 'ID', '.')
   ```
-* Split the DataFrame into 22 separate files based on the 'chrom' column.
+* Split the DataFrame into 22 separate files based on the 'chrom' column.The "CHROM" column is of the format 'chr{num}'. 
 * We must provide a VCF file as input, which can be accomplished by appending a header to a text file:
   ```
   header_lines = "##fileformat=VCFv4.3\n##reference=GRCh38\n#CHROM\tPOS\tID\tREF\tALT\tConsequence_Type\tImpact\tGene\tGene_ID\tTranscript_Info\tTranscript_Type\tAmino_Acid_Position\tPolyphen_Score\tAmino_Acid_Change\tNucleotide_Change\tStrand_Info\tcarriers ID\n"
