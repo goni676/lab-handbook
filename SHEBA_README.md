@@ -160,3 +160,16 @@ fields = ["AF_raw"]
 ops=["first"]
 ...
 ```
+
+| Covariate | Coefficient (β) | Hazard Ratio (exp(β)) | Std. Error | 95% CI for β | 95% CI for exp(β) | Z-Score | P-Value    | -log2(p)    |
+|-----------|-----------------|-----------------------|------------|--------------|-------------------|---------|------------|-------------|
+| ALPHA     | 0.78            | 2.18                  | 1.19       | -1.55, 3.10  | 0.21, 22.24       | 0.66    | 0.51       | 0.97        |
+| CADD      | 0.08            | 1.08                  | 0.04       | 0.00, 0.16   | 1.00, 1.17        | 2.02    | 0.04       | 4.53        |
+
+| Parameter        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `df_cox`         | The DataFrame containing the survival data.                                 |
+| `duration_col`   | Specifies the column (`'AOO'`) in `df_cox` that contains the survival times.|
+| `event_col`      | Indicates the column (`'Had_BRE'`) in `df_cox` that contains the event occurrence (1 if the event has occurred, 0 otherwise). |
+| `formula`        | Defines the covariates included in the model (`'ALPHA+CADD'`).              |
+
