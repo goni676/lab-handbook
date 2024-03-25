@@ -205,7 +205,7 @@ ops=["first"]
 3. Next, we aim to merge the two files representing the same woman, such as O9-UO3. To achieve this, we will execute the following command:
 
     ```
-    plink --bfile O9_with_ids_no_amb --bmerge ../ultima_genomics/UO3_with_ids_no_amb --make-bed --allow-extra-chr --out ../combined/O9_UO3
+    plink --bfile O9_with_ids --bmerge ../ultima_genomics/UO3_with_ids --make-bed --allow-extra-chr --out ../combined/O9_UO3
     ```
     We expect to encounter this type of error:
     ### Error Encountered
