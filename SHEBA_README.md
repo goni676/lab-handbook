@@ -222,6 +222,6 @@ ops=["first"]
 
 5. Now, to calculate genome-wide estimates of pairwise genetic relatedness among individuals in our dataset, we will execute the following command:
      ```
-     plink --bfile /specific/elkon/gonicohen/sheba_rinat/combined/O12_UO1_with_ids_no_amb --out /specific/elkon/BRCA_WGS/O12_UO1.relatedness --genome --allow-extra-chr
-     ```
+      plink --bfile /specific/elkon/gonicohen/sheba_rinat/combined/O9_UO3 --out /specific/elkon/gonicohen/sheba_rinat/combined/O9_UO3.relatedness --genome --allow-extra-chr
+    ```
 
