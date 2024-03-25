@@ -173,3 +173,55 @@ ops=["first"]
 | `event_col`      | Indicates the column (`'Had_BRE'`) in `df_cox` that contains the event occurrence (1 if the event has occurred, 0 otherwise). |
 | `formula`        | Defines the covariates included in the model (`'ALPHA+CADD'`).              |
 
+
+## PLINK
+
+### ULTIMA GENOMICS VS. BGI
+1. BGI genotyping consolidates all women into a single file. Consequently, we aim to divide it into individual files for each woman.
+    ```
+    plink --bfile all --keep O12.txt --make-bed --allow-extra-chr --out O12
+    ```
+2. Since the bed file adheres to this format:
+
+    | Variant ID | Placeholder_1 | Placeholder_2 | Position | Reference Allele | Alternative Allele(s) |
+    |------------|---------------|---------------|----------|------------------|-----------------------|
+    | 1          | .             | 0             | 10140    | A                | ACCCTAAC              |
+    | 2          | .             | 0             | 10146    | A                | AC                    |
+    | 3          | .             | 0             | 10177    | C                | A                     |
+    
+    we must assign an identification (ID) to each variant. This applies to both the big and Ultima genomics files:
+    ```
+    plink --bfile O9 --set-missing-var-ids @_#_\$1_\$2 --make-bed --allow-extra-chr --out O9_with_ids
+    ```
+    The new bed file now follows the following format:
+    
+    | Variant ID | Variant Name | Placeholder | Position | Reference Allele | Alternative Allele(s) |
+    |------------|--------------|-------------|----------|------------------|-----------------------|
+    | 1          | 1_10146_A_AC | 0           | 10146    | A                | AC                    |
+    | 2          | 1_10177_A_C  | 0           | 10177    | C                | A                     |
+    | 3          | 1_12807_C_T  | 0           | 12807    | T                | C                     |
+    | 4          | 1_13079_C_G  | 0           | 13079    | G                | C                     |
+
+3. Next, we aim to merge the two files representing the same woman, such as O9-UO3. To achieve this, we will execute the following command:
+
+    ```
+    plink --bfile O9_with_ids_no_amb --bmerge ../ultima_genomics/UO3_with_ids_no_amb --make-bed --allow-extra-chr --out ../combined/O9_UO3
+    ```
+    We expect to encounter this type of error:
+    ### Error Encountered
+    **Error: 758 variants with 3+ alleles present.**
+
+4. In the 'combined' directory, you'll find the output of the merge operation. One of the files present is 'O9_UO3_with_ids-merge.missnp', which contains information on variants that were not successfully merged.
+   Now, we exclude variants that didn't merge successfully from each file (O9_with_ids and UO3_with_ids) and proceed to run the merge operation again.
+
+    ```
+    plink --bfile O9_with_ids --exclude ../combined/O9_UO3_with_ids-merge.missnp  --make-bed --allow-extra-chr --out O9_with_ids_no_amb
+    plink --bfile UO3_with_ids --exclude ../combined/O9_UO3_with_ids-merge.missnp  --make-bed --allow-extra-chr --out UO3_with_ids_no_amb
+    plink --bfile O9_with_ids_no_amb --bmerge ../ultima_genomics/UO_with_ids_no_amb --make-bed --allow-extra-chr --out ../combined/O9_UO3
+    ```
+
+5. Now, to calculate genome-wide estimates of pairwise genetic relatedness among individuals in our dataset, we will execute the following command:
+     ```
+     plink --bfile /specific/elkon/gonicohen/sheba_rinat/combined/O12_UO1_with_ids_no_amb --out /specific/elkon/BRCA_WGS/O12_UO1.relatedness --genome --allow-extra-chr
+     ```
+
